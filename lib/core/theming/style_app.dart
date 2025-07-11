@@ -22,7 +22,6 @@ class TextStyles {
     color: ColorsApp.gray,
   );
 
-  
   static final TextStyle font16Gray = TextStyle(
     fontSize: 16.sp,
     color: ColorsApp.gray,
@@ -98,11 +97,11 @@ class TextStyles {
     color: ColorsApp.gray,
     fontWeight: FontWeightHelper.medium,
   );
-  //   static final TextStyle font14Gray = TextStyle(
-  //   fontSize: 12.sp,
-  //   // fontWeight: FontWeightHelper.regular,
-  //   color: ColorsApp.gray,
-  // );
+  static final TextStyle font32White = TextStyle(
+    fontSize: 32.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: ColorsApp.whiteColor,
+  );
   static final TextStyle font12LightGray = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.thin,
