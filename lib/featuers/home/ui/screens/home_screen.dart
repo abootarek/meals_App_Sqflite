@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:meleapp/core/helper/navigation.dart';
 import 'package:meleapp/core/helper/sixe_box.dart';
+import 'package:meleapp/core/routing/routers_app.dart';
 import 'package:meleapp/core/theming/colors_app.dart';
 import 'package:meleapp/featuers/home/ui/widgets/grid_view_builder_custom.dart';
 import 'package:meleapp/featuers/home/ui/widgets/stack_image_and_text.dart';
@@ -27,7 +29,9 @@ class HomeScreen extends StatelessWidget {
           color: ColorsApp.mainBlue,
           size: 30,
         ),
-        onPressed: () {},
+        onPressed: () {
+          context.pushNamed(Routes.addMeals);
+        },
       ),
       body: SingleChildScrollView(
         child: Column(
