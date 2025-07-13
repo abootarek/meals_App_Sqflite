@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meleapp/core/helper/navigation.dart';
 import 'package:meleapp/core/routing/routers_app.dart';
+import 'package:meleapp/core/theming/colors_app.dart';
 import 'package:meleapp/core/theming/style_app.dart';
 import 'package:meleapp/featuers/onbording/data/demo_data.dart';
 
@@ -21,8 +22,7 @@ class ButtonAppCustom extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppTextButton(
       borderRadius: 8.0.r,
-      buttonText:
-          currentIndex == demoData.length - 1 ? 'Get Started' : 'Next',
+      buttonText: currentIndex == demoData.length - 1 ? 'Get Started' : 'Next',
       textStyle: TextStyles.font16White,
       onPressed: () {
         if (currentIndex < demoData.length - 1) {
@@ -37,4 +37,3 @@ class ButtonAppCustom extends StatelessWidget {
     );
   }
 }
-
