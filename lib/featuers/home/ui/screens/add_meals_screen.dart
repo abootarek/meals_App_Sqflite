@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:meleapp/core/helper/sixe_box.dart';
 import 'package:meleapp/core/theming/colors_app.dart';
-import 'package:meleapp/core/theming/style_app.dart';
-import 'package:meleapp/core/widgets/button_app.dart';
-import 'package:meleapp/core/widgets/text_form_field_app.dart';
+import 'package:meleapp/featuers/home/ui/widgets/form_add_meals_custom.dart';
+import 'package:meleapp/featuers/home/ui/widgets/popup_menu_button_custom.dart';
 
 class AddMeals extends StatelessWidget {
   const AddMeals({super.key});
@@ -30,76 +27,15 @@ class AddMeals extends StatelessWidget {
           ),
           onPressed: () => Navigator.pop(context),
         ),
+        actions: [
+          PopupMenuButtonCustom(),
+        ],
         scrolledUnderElevation: 0,
         backgroundColor: ColorsApp.backGroundWhite,
         centerTitle: true,
         title: const Text('Add Meals'),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 24.w,
-            vertical: 16.h,
-          ),
-          child: Column(
-            spacing: 10.h,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Meal Name',
-                style: TextStyles.font16Black,
-              ),
-              AppTextFormField(
-                hintText: '',
-                validator: (value) {},
-              ),
-              Text(
-                'Image URL',
-                style: TextStyles.font16Black,
-              ),
-              AppTextFormField(
-                maxLines: 3,
-                hintText: '',
-                validator: (value) {},
-              ),
-              Text(
-                'Rate',
-                style: TextStyles.font16Black,
-              ),
-              AppTextFormField(
-                keyboardType: TextInputType.number,
-                hintText: '',
-                validator: (value) {},
-              ),
-              Text(
-                'Time',
-                style: TextStyles.font16Black,
-              ),
-              AppTextFormField(
-                keyboardType: TextInputType.number,
-                hintText: '',
-                validator: (value) {},
-              ),
-              Text(
-                'Description',
-                style: TextStyles.font16Black,
-              ),
-              AppTextFormField(
-                maxLines: 4,
-                hintText: '',
-                validator: (value) {},
-              ),
-              verticalSpace(3.h),
-              AppTextButton(
-                borderRadius: 8.0.r,
-                buttonText: 'Add Meal',
-                textStyle: TextStyles.font16White,
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ),
-      ),
+      body: FormAddMealsCustom(),
     );
   }
 }

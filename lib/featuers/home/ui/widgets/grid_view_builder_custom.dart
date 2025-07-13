@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meleapp/core/helper/sixe_box.dart';
+import 'package:meleapp/core/theming/colors_app.dart';
 import 'package:meleapp/core/theming/style_app.dart';
+import 'package:meleapp/featuers/home/data/db_helper/db_helper.dart';
 import 'package:meleapp/featuers/home/ui/widgets/item_grid_view_builder.dart';
 
 class GridViewBuilderCustom extends StatelessWidget {
@@ -9,6 +11,8 @@ class GridViewBuilderCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final DataBaseHelper databaseHelper = DataBaseHelper.dataBaseHelper;
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: Column(
@@ -20,21 +24,42 @@ class GridViewBuilderCustom extends StatelessWidget {
             style: TextStyles.font18DarkBlack,
           ),
           verticalSpace(25.h),
-          GridView.builder(
-            padding: EdgeInsets.zero,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 0.83,
-              crossAxisSpacing: 16.w,
-              mainAxisSpacing: 16.h,
-            ),
-            itemBuilder: (context, index) {
-              return ItemGridViewCustom();
+          FutureBuilder(
+            future: databaseHelper.getAllMeals(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                    child: CircularProgressIndicator(
+                  color: ColorsApp.mainBlue,
+                ));
+              } else if (snapshot.hasError) {
+                return Center(child: Text('Error: ${snapshot.error}'));
+              } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+                return GridView.builder(
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: snapshot.data!.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 20.h,
+                    crossAxisSpacing: 20.w,
+                  ),
+                  itemBuilder: (context, index) => ItemGridViewCustom(
+                    mealsModel: snapshot.data![index],
+                  ),
+                );
+              } else {
+                return Center(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text('No Data'),
+                  ),
+                );
+              }
             },
-            itemCount: 8,
           ),
+          //verticalSpace(25.h),
         ],
       ),
     );
