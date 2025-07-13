@@ -37,34 +37,26 @@ class ItemGridViewCustom extends StatelessWidget {
             children: [
               CachedNetworkImage(
                 width: double.infinity,
-                height: 70.h,
+                height: 75.h,
                 imageUrl: mealsModel!.image!,
                 fit: BoxFit.cover,
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
-              Text(
-                mealsModel!.title,
-                style: TextStyles.font16DarkBlackSemiBold,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  mealsModel!.title,
+                  style: TextStyles.font16DarkBlackSemiBold,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
               Row(
                 children: [
                   Text(
-                    '⭐',
+                    ' 📅  ',
                     style: TextStyles.font16DarkBlackSemiBold,
                   ),
-                  horizontalSpace(5.w),
-                  Text(
-                    mealsModel!.raite.toString(),
-                    style: TextStyles.font16DarkBlackSemiBold,
-                  ),
-                  Spacer(),
-                  Text(
-                    ' 📅',
-                    style: TextStyles.font16DarkBlackSemiBold,
-                  ),
-                  horizontalSpace(5.w),
                   Text(
                     mealsModel!.date.toString(),
                     style: TextStyles.font16DarkBlackSemiBold,

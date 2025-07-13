@@ -3,4 +3,5 @@ class Routes {
   static const String homeScreen = '/homeScreen';
   static const String addMeals = '/addMeals';
   static const String detailsMeilsScreen = '/detailsMeilsScreen';
+  static const String editMeals = '/editMeals';
 }

@@ -7,7 +7,7 @@ class MealsModel {
   final int? id;
   final String title;
   final String? image;
-  final double? raite;
+  final String? type;
   final String? date;
   final String? description;
 
@@ -15,7 +15,7 @@ class MealsModel {
     this.id,
     required this.title,
     this.image,
-    this.raite,
+    this.type,
     this.date,
     this.description,
   });
@@ -29,7 +29,7 @@ class MealsModel {
     final map = {
       'title': title,
       'image': image,
-      'raite': raite,
+      'type': type,
       'date': date,
       'description': description,
     };
@@ -42,7 +42,7 @@ class MealsModel {
       id: map['id'],
       title: map['title'],
       image: map['image'],
-      raite: map['raite'] != null ? map['raite'] * 1.0 : null,
+      type: map['type'],
       date: map['date'],
       description: map['description'],
     );

@@ -3,6 +3,7 @@ import 'package:meleapp/core/routing/routers_app.dart';
 import 'package:meleapp/featuers/home/data/models/meals_model.dart';
 import 'package:meleapp/featuers/home/ui/screens/add_meals_screen.dart';
 import 'package:meleapp/featuers/home/ui/screens/details_meils_screen.dart';
+import 'package:meleapp/featuers/home/ui/screens/edit_meals_screen.dart';
 import 'package:meleapp/featuers/home/ui/screens/home_screen.dart';
 import 'package:meleapp/featuers/onbording/ui/onbording_screen.dart';
 
@@ -25,11 +26,18 @@ class AppRouting {
           builder: (_) => AddMeals(),
         );
       // Details Meals
-
       case Routes.detailsMeilsScreen:
         final mealsModel = settings.arguments as MealsModel;
         return MaterialPageRoute(
           builder: (_) => DetailsMeilsScreen(
+            mealsModel: mealsModel,
+          ),
+        );
+      // Edit Meals
+      case Routes.editMeals:
+        final mealsModel = settings.arguments as MealsModel;
+        return MaterialPageRoute(
+          builder: (_) => EditMealsScreen(
             mealsModel: mealsModel,
           ),
         );

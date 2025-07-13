@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meleapp/core/helper/navigation.dart';
+import 'package:meleapp/core/routing/routers_app.dart';
 import 'package:meleapp/core/theming/colors_app.dart';
 import 'package:meleapp/core/theming/style_app.dart';
 import 'package:meleapp/core/widgets/text_form_field_app.dart';
@@ -56,8 +57,7 @@ class PopupMenuButtonCustom extends StatelessWidget {
                   onPressed: () async {
                     final id = int.tryParse(idController.text);
                     if (id != null) {
-                      await DataBaseHelper.dataBaseHelper
-                          .deleteOneMeal(id);
+                      await DataBaseHelper.dataBaseHelper.deleteOneMeal(id);
                       context.pop();
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text("✅ تم حذف الوجبة")),
