@@ -5,6 +5,7 @@ import 'package:meleapp/core/helper/sixe_box.dart';
 import 'package:meleapp/core/theming/colors_app.dart';
 import 'package:meleapp/core/theming/style_app.dart';
 import 'package:meleapp/featuers/home/data/models/meals_model.dart';
+import 'package:meleapp/featuers/home/ui/screens/edit_meals_screen.dart';
 
 class DetailsMeilsScreen extends StatelessWidget {
   const DetailsMeilsScreen({
@@ -41,75 +42,103 @@ class DetailsMeilsScreen extends StatelessWidget {
           ),
           onPressed: () => Navigator.pop(context),
         ),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              final updatedMeal = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => EditMealsScreen(mealsModel: mealsModel!),
+                ),
+              );
+
+              if (updatedMeal != null && updatedMeal is MealsModel) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => DetailsMeilsScreen(mealsModel: updatedMeal),
+                  ),
+                );
+              }
+            },
+            icon: const Icon(Icons.edit),
+          ),
+        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16.0,
-          vertical: 24.0,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CachedNetworkImage(
-              imageUrl: mealsModel!.image!,
-              fit: BoxFit.cover,
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-            ),
-            Text(
-              mealsModel!.title,
-              style: TextStyles.font16DarkBlackSemiBold,
-            ),
-            verticalSpace(21.h),
-            Container(
-              width: double.infinity,
-              height: 60.h,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25.r),
-                color: ColorsApp.mistyGrey,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16.0,
+            vertical: 24.0,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CachedNetworkImage(
+                imageUrl: mealsModel!.image!,
+                fit: BoxFit.cover,
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-                child: Row(children: [
-                  Text(
-                    '⭐',
-                    style: TextStyles.font16DarkBlackSemiBold,
-                  ),
-                  horizontalSpace(5.w),
-                  Text(
-                    mealsModel!.raite.toString(),
-                    style: TextStyles.font16DarkBlackSemiBold,
-                  ),
-                  Spacer(),
-                  Text(
-                    ' 📅',
-                    style: TextStyles.font16DarkBlackSemiBold,
-                  ),
-                  horizontalSpace(5.w),
-                  Text(
-                    mealsModel!.date.toString(),
-                    style: TextStyles.font16DarkBlackSemiBold,
-                  ),
-                ]),
+              verticalSpace(21.h),
+              Text(
+                mealsModel!.title,
+                style: TextStyles.font24DarkBlack,
               ),
-            ),
-            verticalSpace(21.h),
-            Divider(
-              color: Colors.grey,
-              thickness: 1,
-              height: 20,
-            ),
-            verticalSpace(21.h),
-            Text(
-              'Description',
-              style: TextStyles.font16DarkBlackSemiBold,
-            ),
-            verticalSpace(21.h),
-            Text(
-              mealsModel?.description ?? '',
-              style: TextStyles.font16DarkBlackSemiBold,
-            ),
-          ],
+              verticalSpace(21.h),
+              Container(
+                width: double.infinity,
+                height: 60.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25.r),
+                  color: ColorsApp.mistyGrey,
+                ),
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Type :',
+                        style: TextStyles.font16DarkBlackSemiBold,
+                      ),
+                      horizontalSpace(5.w),
+                      Text(
+                        mealsModel!.type ?? '',
+                        style: TextStyles.font16DarkBlackSemiBold,
+                      ),
+                      Spacer(),
+                      Text(
+                        ' 📅',
+                        style: TextStyles.font16DarkBlackSemiBold,
+                      ),
+                      horizontalSpace(5.w),
+                      Text(
+                        mealsModel!.date.toString(),
+                        style: TextStyles.font16DarkBlackSemiBold,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              verticalSpace(21.h),
+              Divider(
+                color: Colors.grey,
+                thickness: 1,
+                height: 20,
+              ),
+              verticalSpace(21.h),
+              Text(
+                'Description',
+                style: TextStyles.font16DarkBlackSemiBold,
+              ),
+              verticalSpace(21.h),
+              Text(
+                mealsModel?.description ?? '',
+                style: TextStyles.font16DarkBlackSemiBold,
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meleapp/core/routing/app_routing.dart';
-import 'package:meleapp/featuers/home/data/db_helper/db_helper.dart';
-import 'package:meleapp/featuers/home/data/models/meals_model.dart';
+
 
 import 'package:meleapp/meals_app.dart';
 

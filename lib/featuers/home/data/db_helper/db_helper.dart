@@ -18,7 +18,7 @@ class DataBaseHelper {
     String path = join(await getDatabasesPath(), 'meals.db');
     return await openDatabase(
       path,
-      version: 1,
+      version: 2,
       onCreate: createDataBase,
     );
   }
@@ -30,7 +30,7 @@ class DataBaseHelper {
         title TEXT,
         image TEXT,
         description TEXT,
-        raite REAL,
+        type TEXT,
         date TEXT
 
 

@@ -10,7 +10,7 @@ MealsModel _$MealsModelFromJson(Map<String, dynamic> json) => MealsModel(
       id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String,
       image: json['image'] as String?,
-      raite: (json['raite'] as num?)?.toDouble(),
+      type: json['type'] as String?,
       date: json['date'] as String?,
       description: json['description'] as String?,
     );
@@ -20,7 +20,7 @@ Map<String, dynamic> _$MealsModelToJson(MealsModel instance) =>
       'id': instance.id,
       'title': instance.title,
       'image': instance.image,
-      'raite': instance.raite,
+      'type': instance.type,
       'date': instance.date,
       'description': instance.description,
     };

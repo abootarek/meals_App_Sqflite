@@ -20,7 +20,7 @@ class _FormAddMealsCustomState extends State<FormAddMealsCustom> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController imageUrlController = TextEditingController();
-  TextEditingController rateController = TextEditingController();
+  TextEditingController typeController = TextEditingController();
   TextEditingController timeController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   DataBaseHelper dataBaseHelper = DataBaseHelper.dataBaseHelper;
@@ -70,16 +70,16 @@ class _FormAddMealsCustomState extends State<FormAddMealsCustom> {
                 },
               ),
               Text(
-                'Rate',
+                'Type',
                 style: TextStyles.font16Black,
               ),
               AppTextFormField(
-                controller: rateController,
-                keyboardType: TextInputType.number,
-                hintText: ' Add rate',
+                controller: typeController,
+                keyboardType: TextInputType.multiline,
+                hintText: ' Add type',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter rate';
+                    return 'Please enter type';
                   }
                   return null;
                 },
@@ -121,17 +121,18 @@ class _FormAddMealsCustomState extends State<FormAddMealsCustom> {
                 textStyle: TextStyles.font16White,
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
+                    // showLoadingDialog(context);
                     MealsModel mealsModel = MealsModel(
                       title: nameController.text,
                       image: imageUrlController.text,
-                      raite: double.parse(rateController.text),
+                      type: typeController.text,
                       date: timeController.text,
                       description: descriptionController.text,
                     );
                     dataBaseHelper.insertMeal(mealsModel);
                     nameController.clear();
                     imageUrlController.clear();
-                    rateController.clear();
+                    typeController.clear();
                     timeController.clear();
                     descriptionController.clear();
                   }
